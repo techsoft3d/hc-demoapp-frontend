@@ -48,7 +48,7 @@ class Admin {
         }
 
 
-        let response = await myUserManagmentClient.login( userAccount,userPassword);
+        let response = await myUserManagmentClient.login( userAccount,userPassword, true);
         let sessionProject = response.sessionProject;
         $(".loggedinuser").empty();
         $(".loggedinuser").append("");
