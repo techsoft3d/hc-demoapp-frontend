@@ -1,6 +1,8 @@
 var csManagerClient = null;
 var myDropzone;
 var firstLoad = true;
+var checkForNewModelsPending = false;
+
 
 function paramNameForSend() {
     return "files";
@@ -311,7 +313,13 @@ class CsManagerClient {
     }
 
     async _checkForNewModels() {
+
+        if (checkForNewModelsPending) {
+            return;
+        }
+        checkForNewModelsPending = true;
         let data = await myUserManagmentClient.getModels();
+        checkForNewModelsPending = false;
 
         let newtime = Date.parse(data.updated);
         if (this._updatedTime == undefined || this._updatedTime != newtime) {
