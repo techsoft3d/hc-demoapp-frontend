@@ -93,7 +93,7 @@ async function initializeViewer() {
 
   hwv.setCallbacks({
     sceneReady: () => {
-//      hwv.view.setBackgroundColor(new Communicator.Color(255,255,255),new Communicator.Color(128,128,255));
+      hwv.view.setBackgroundColor(new Communicator.Color(196,196,196),new Communicator.Color(196,196,196));
     },
     modelStructureReady: msready,
   });

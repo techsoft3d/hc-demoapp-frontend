@@ -111,6 +111,7 @@
   /* Style page content */
   .main {
     margin-left: 40px; /* Same as the width of the sidebar */  
+    background: rgb(196,196,196); /* Fallback color */
   }
   
   .modelcard {
