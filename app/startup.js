@@ -5,6 +5,12 @@ const serveraddress = "https://caas.techsoft3d.com:443";
 var myAdmin;
 var myUserManagmentClient;
 
+
+function switchStreaming() {
+  localStorage.setItem("CSDA-DISABLESTREAMING", myAdmin.getStreamingDisabled() ? false : true);
+  window.location.reload(true); 
+}
+
 async function setupApp() {
 
  // await fetch(serveraddress + '/test', { method: 'PUT' });        
@@ -28,6 +34,8 @@ async function setupApp() {
   mainUI.registerSideBars("sidebar_models", 450);
 
   myAdmin = new Admin();
+  myAdmin.setStreamingDisabled(localStorage.getItem("CSDA-DISABLESTREAMING") == 'true' ? true : false);
+
   myAdmin.setUpdateUICallback(mainUI.updateMenu);
   myAdmin.adminProject.setLoadProjectCallback(loadProjectCallback);
 
@@ -63,6 +71,8 @@ function msready() {
 
   }, 10);
 }
+
+
 
 async function initializeViewer() {
   

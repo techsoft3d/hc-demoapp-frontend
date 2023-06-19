@@ -8,13 +8,19 @@ class MainUI {
     }
     setupMenu() {
 
-        var viewermenu = [           
+        var viewermenu = [          
+            {
+                name: localStorage.getItem("CSDA-DISABLESTREAMING") == 'true' ? 'Enable Streaming' : 'Disable Streaming',
+                fun: async function () {
+                    switchStreaming();
+                }
+            }, 
             {
                 name: 'Logout',
                 fun: async function () {
                     myAdmin.handleLogout();
                 }
-            }           
+            }                       
         ];
         if (!myUserManagmentClient.getDemoMode())
         {

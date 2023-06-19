@@ -12,6 +12,17 @@ class Admin {
      
         this.adminHub = new AdminHub();
         this.adminProject = new AdminProject();
+
+        this.streamingDisabled =  false;
+
+    }
+
+    setStreamingDisabled(disabled) {
+        this.streamingDisabled = disabled;
+    }
+
+    getStreamingDisabled() {
+        return this.streamingDisabled;
     }
 
     setUpdateUICallback(updateuicallback) {
@@ -34,6 +45,8 @@ class Admin {
         $(".projectname").append("HOOPS Web Platform Demo");
 
         await myUserManagmentClient.getConfiguration();
+
+        myUserManagmentClient.setUseStreaming(!this.streamingDisabled);
 
         let success = await myUserManagmentClient.checkLogin();
         if (success) {
