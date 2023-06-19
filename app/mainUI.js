@@ -16,7 +16,7 @@ class MainUI {
                 }
             }, 
             {
-                name: 'Logout',
+                name: 'Reset Demo Project',
                 fun: async function () {
                     myAdmin.handleLogout();
                 }
