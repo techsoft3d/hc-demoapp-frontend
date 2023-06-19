@@ -2,6 +2,7 @@ var csManagerClient = null;
 var myDropzone;
 var firstLoad = true;
 var checkForNewModelsPending = false;
+var checkInterval = null;
 
 
 function paramNameForSend() {
@@ -49,7 +50,14 @@ class CsManagerClient {
             uploadprogress: function (file, progress, bytesSent) {
                 _this.uploadTable.updateData([{ id: file.upload.uuid, progress: progress }]);
             },
-            accept: async function (file, cb) {               
+            accept: async function (file, cb) {        
+                
+                
+                if(!checkInterval) {
+                    checkInterval = setInterval(async function () {
+                        await _this._checkForNewModels();
+                    }, 2000);
+                }
 
                 if (file.name.indexOf(".zip") != -1) {
 
@@ -266,11 +274,8 @@ class CsManagerClient {
             _this.loadModel(data.id);
         });
 
-        setInterval(async function () {
-            await _this._checkForNewModels();
-        }, 2000);
     }
-
+    
     showUploadWindow() {
 
         $("#standarduploaddiv").css('display', 'block');
@@ -352,7 +357,12 @@ class CsManagerClient {
     async _updateModelList(data) {
 
 
+        let stillPending = false;
         for (var i = 0; i < data.length; i++) {
+            if (data[i].pending) {
+                stillPending = true;
+            }
+
             let part = null;
             if (!data[i].pending && (!this._modelHash[data[i].id] || !this._modelHash[data[i].id].image)) {
                 part = this._fetchImage(data[i]);
@@ -371,6 +381,10 @@ class CsManagerClient {
                     this.modelTable.updateData([{ id: data[i].id, image: part }]);
                 }
             }
+        }
+        if (!stillPending) {
+            clearInterval(checkInterval);
+            checkInterval = null;
         }
     }
 
