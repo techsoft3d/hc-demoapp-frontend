@@ -1,7 +1,7 @@
 var userAccount = "demo@techsoft3d.com";
 var userPassword = "demo";
 var startHUB = "demo";
-
+var version = "v0.5.0";
 
 class Admin {
 
@@ -42,8 +42,10 @@ class Admin {
     async checkLogin() {
 
         $(".projectname").empty();
-        $(".projectname").append("HOOPS Web Platform Demo");
-
+        $(".projectname").append('HOOPS Web Platform Demo<span class="versionstring">' + version + (this.streamingDisabled ? " (SCS)" : " (Streaming)")+ '</span>');
+        // $(".projectname").empty();
+        // $(".projectname").append("HOOPS Web Platform Demo");
+        // <span id="versionstring" style="color:white;font-size:8px;left:5px;top:-4px;position:relative;"></span>
         await myUserManagmentClient.getConfiguration();
 
         myUserManagmentClient.setUseStreaming(!this.streamingDisabled);
