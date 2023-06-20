@@ -22,6 +22,12 @@ class MainUI {
                 }
             },
             {
+                name: 'Help',
+                fun: async function () {
+                    showHelp();
+                }
+            },      
+            {
                 name: 'About',
                 fun: async function () {
                     showAbout();
