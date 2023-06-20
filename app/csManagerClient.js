@@ -236,6 +236,14 @@ class CsManagerClient {
 
         let rowMenu = [
             {
+                label: "<i class='fas fa-user'></i> Add to Current Model",
+                action: async function (e, row) {
+                    let modelid = row.getData().id;
+                    await _this.loadModel(modelid, false);
+                }
+            },
+
+            {
                 label: "<i class='fas fa-user'></i> Delete",
                 action: async function (e, row) {
                     let modelid = row.getData().id;
@@ -388,14 +396,16 @@ class CsManagerClient {
         }
     }
 
-    async loadModel(modelid) {
+    async loadModel(modelid, clear = true) {
 
         if (firstLoad) {
             firstLoad = false;
         }
         else
         {
-           await hwv.model.clear();           
+            if (clear) {
+                await hwv.model.clear();           
+            }
         }
 
         if (this._modelHash[modelid].name.indexOf(".dwg")) {
