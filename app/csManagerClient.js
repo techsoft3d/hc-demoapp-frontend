@@ -389,11 +389,7 @@ class CsManagerClient {
                     this.modelTable.updateData([{ id: data[i].id, image: part }]);
                 }
             }
-        }
-        if (!stillPending) {
-            clearInterval(checkInterval);
-            checkInterval = null;
-        }
+        }       
     }
 
     async loadModel(modelid, clear = true) {
@@ -407,8 +403,7 @@ class CsManagerClient {
                 await hwv.model.clear();           
             }
         }
-
-        if (this._modelHash[modelid].name.indexOf(".dwg")) {
+        if (this._modelHash[modelid].name.indexOf(".dwg") != -1) {
             hwv.view.setAmbientOcclusionEnabled(false);
         }
         if (!myUserManagmentClient.getUseStreaming()) {
