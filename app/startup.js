@@ -88,8 +88,8 @@ function showHelp() {
 function showBuilt() {
   let html = "";
   html+='<div style="margin-top:5px;text-align:left;font-size:14px;">';
-  html+='This demo is powered by the <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/viewing/overview.html" "target="_blank">HOOPS Communicator Webviewer</a> library on the client and uses its standard UI with an additional layer specific to this demo (built on bootstrap). ';
-  html+='The backend is running on Amazon EC2 and utilizing our <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/servers/stream_cache_server/overview.html" "target="_blank">Stream Cache Server</a> as well as our <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/data_import/cad_conversion/converter_app/converter-application-overview.html" "target="_blank">Converter Application</a> for CAD Conversion.';
+  html+='This demo is powered by the <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/viewing/overview.html" "target="_blank">HOOPS Communicator Webviewer</a> library on the client and uses its standard UI with an additional layer specific to this demo (built with bootstrap). ';
+  html+='The backend is running on Amazon EC2 and utilizing our <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/servers/stream_cache_server/overview.html" "target="_blank">Stream Cache Server</a> as well as <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/data_import/cad_conversion/converter_app/converter-application-overview.html" "target="_blank">Converter</a> for CAD Conversion.';
   html+= ' All uploaded and converted models are stored in Amazon S3.<br><br>'
   html+= 'The backend as well as the front-end have been built with the <a href ="https://forum.techsoft3d.com/t/conversion-and-streaming-backend-for-hoops-communicator/1314" "target="_blank">Communcator as a Service (CaaS)</a> project as well as its <a href ="https://forum.techsoft3d.com/t/user-management-library-for-caas-released/1535" "target="_blank">User Management</a> component.'
   html+= ' The demo itself will be available on GitHub shortly.<br><br>';
