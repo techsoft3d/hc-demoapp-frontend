@@ -45,7 +45,7 @@ class MainUI {
         for (var i in this.sideBars) {
             $("#" + i).css({ "display": "none" });
             this.sideBars[i].expanded = false;
-            $("#" + i + "_button").css("color", "white");
+            $("#" + i + "_button").css("color", "lightgray");
         }
         $("#content").css("margin-left", "40px");
         $("#content").css({ "width": "" });
@@ -66,7 +66,7 @@ class MainUI {
             $("#content").css("margin-left", (sidebar.width + 40) + "px");
             $("#content").css({ "width": newwidth + "px" });
             sidebar.expanded = true;
-            $("#" + div + "_button").css("color", "grey");
+            $("#" + div + "_button").css("color", "gray");
         }
         else {
             this.collapseAll();
