@@ -49,12 +49,45 @@ async function loadProjectCallback() {
 }
 
 
+
+
+function showBuilt() {
+  let html = "";
+  html+='<div style="margin-top:5px;text-align:left;font-size:14px;">';
+  html+='This demo is powered by the <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/viewing/overview.html" "target="_blank">HOOPS Communicator Webviewer</a> library on the client and uses its standard UI with an additional layer specific to this demo (built on bootstrap). ';
+  html+='The backend is running on Amazon EC2 and utilizing our <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/servers/stream_cache_server/overview.html" "target="_blank">Stream Cache Server</a> as well as our <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/data_import/cad_conversion/converter_app/converter-application-overview.html" "target="_blank">Converter Application</a> for CAD Conversion.';
+  html+= ' All uploaded and converted models are stored in Amazon S3.<br><br>'
+  html+= 'The backend as well as the front-end have been built with the <a href ="https://forum.techsoft3d.com/t/conversion-and-streaming-backend-for-hoops-communicator/1314" "target="_blank">Communcator as a Service (CaaS)</a> project as well as its <a href ="https://forum.techsoft3d.com/t/user-management-library-for-caas-released/1535" "target="_blank">User Management</a> component.'
+  html+= ' The demo itself will be available on GitHub shortly.<br><br>';
+  html+= 'If you have any question feel free to get in touch via email (guido@techsoft3d.com) or post in the <a href ="https://forum.techsoft3d.com" "target="_blank">forum</a>.';
+
+
+
+  html+='</div';
+  Swal.fire({
+
+    title: 'Technical Info',
+    html: html,
+
+    confirmButtonText: 'Dismiss',
+    backdrop: false,
+    showClass: {
+        backdrop: 'swal2-noanimation', // disable backdrop animation
+        popup: '',                     // disable popup animation
+        icon: ''                       // disable icon animation
+    },
+
+})
+}
+
+
 function showAbout() {
   let html = 'This is a demo of the  <a href="https://www.techsoft3d.com/products/hoops/web-platform" target="_blank">HOOPS Web Platform</a>, a framework for developing advanced web-based engineering applications.<br>';
   html+='<div style="margin-top:5px;text-align:left;font-size:14px;">';
-  html+='<ul><li>View and interrogate the provided sample models or upload your own from any of the more than 25 <a href="https://docs.techsoft3d.com/communicator/latest/overview/supported-formats.html"target="_blank">supported formats.</a></li>'
+  html+='<ul><li>View and interrogate the provided sample models or upload your own from any of the more than 25 <a href="https://docs.techsoft3d.com/communicator/latest/overview/supported-formats.html "target="_blank">supported formats.</a></li>'
   html+='<li style="margin-top:4px">To learn more about developing your own application with the HOOPS Web Platform please see the <a href="https://docs.techsoft3d.com/communicator/latest/" target="_blank">documentation</a>, visit our <a href="https://forum.techsoft3d.com/" target="_blank">forum</a> or jump right into coding with our <a href="https://3dsandbox.techsoft3d.com/" target="_blank">3D Code Sandbox</a>.</li>'
-  html+='<li style="margin-top:4px">To sign up for a trial and download the SDK go <a href="https://manage.techsoft3d.com/" target="_blank">here.</a></li></ul>'
+  html+='<li style="margin-top:4px">To sign up for a trial and download the SDK go <a href="https://manage.techsoft3d.com/" target="_blank">here.</a></li>'
+  html+='<li style="margin-top:6px">To get more technical details on how this demo was built go <span style="cursor: pointer;color:blue;" onclick="showBuilt()">here</span>.</a></li></ul>'
   html+='</div';
   Swal.fire({
 
