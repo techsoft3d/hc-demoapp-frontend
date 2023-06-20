@@ -496,6 +496,18 @@ height:100%;
 }
 
 
+#sidebar_models_button {
+  transform:scale(2);
+  position:absolute;
+  left:10px;
+  color:lightgray
+}
+
+#sidebar_models_button:hover {
+  transform:scale(2.3);
+}
+
+
 #sidebar_modellist {
   height: 100%;
   position: relative;
