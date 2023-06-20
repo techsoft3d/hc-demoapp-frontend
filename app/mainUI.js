@@ -20,7 +20,13 @@ class MainUI {
                 fun: async function () {
                     myAdmin.handleLogout();
                 }
-            }                       
+            },
+            {
+                name: 'About',
+                fun: async function () {
+                    showAbout();
+                }
+            }                                  
         ];
         if (!myUserManagmentClient.getDemoMode())
         {

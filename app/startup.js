@@ -48,6 +48,25 @@ async function loadProjectCallback() {
   CsManagerClient.msready();
 }
 
+
+function showAbout() {
+  let html = 'This is a demo of the  <a href="https://www.techsoft3d.com/products/hoops/web-platform" target="_blank">HOOPS Web Platform</a>, a framework for developing advanced web-based engineering applications.';
+//  html+='<ul><li><p style="text-align:left">View and interrogate the provided sample models or upload your own from any of the more than 25 <a href="https://docs.techsoft3d.com/communicator/latest/overview/supported-formats.html"target="_blank">supported formats.</a></p></li>'
+  Swal.fire({
+
+    title: 'Welcome to the HOOPS Web Platform Demo',
+    html: html,
+
+    confirmButtonText: 'Dismiss',
+    backdrop: false,
+    showClass: {
+        backdrop: 'swal2-noanimation', // disable backdrop animation
+        popup: '',                     // disable popup animation
+        icon: ''                       // disable icon animation
+    },
+
+})
+}
 function msready() {
 
   // $("#content").css("top", "0px");

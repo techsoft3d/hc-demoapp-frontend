@@ -63,20 +63,7 @@ class Admin {
         }
 
         setTimeout(function () {
-            Swal.fire({
-
-                title: 'Welcome to the HOOPS Web Platform Demo',
-                html: 'This is a demo of the  <a href="https://www.techsoft3d.com/products/hoops/web-platform" target="_blank">HOOPS Web Platform</a>, a framework for developing advanced web-based engineering applications.',
-
-                confirmButtonText: 'Dismiss',
-                backdrop: false,
-                showClass: {
-                    backdrop: 'swal2-noanimation', // disable backdrop animation
-                    popup: '',                     // disable popup animation
-                    icon: ''                       // disable icon animation
-                },
-
-            })
+            showAbout();           
         }, 2000);
 
         let response = await myUserManagmentClient.login( userAccount,userPassword, true);
