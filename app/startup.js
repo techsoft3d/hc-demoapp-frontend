@@ -121,17 +121,10 @@ function showAbout() {
   html+='<li style="margin-top:6px">To get more technical details on how this demo was built go <span style="cursor: pointer;color:blue;" onclick="showBuilt()">here</span>.</a></li></ul>'
   html+='</div';
   Swal.fire({
-
     title: 'Welcome to the HOOPS Web Platform Demo',
     html: html,
-
     confirmButtonText: 'Dismiss',
     backdrop: false,
-    showClass: {
-        backdrop: 'swal2-noanimation', // disable backdrop animation
-        popup: '',                     // disable popup animation
-        icon: ''                       // disable icon animation
-    },
 
 })
 }
