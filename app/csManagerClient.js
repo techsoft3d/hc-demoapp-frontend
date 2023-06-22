@@ -423,5 +423,7 @@ class CsManagerClient {
             await myUserManagmentClient.enableStreamAccess(modelid);
             await hwv.model.loadSubtreeFromModel(hwv.model.getRootNode(), this._modelHash[modelid].name);
         }
+        let op = hwv.operatorManager.getOperator(Communicator.OperatorId.Walk);
+        op.resetDefaultWalkSpeeds();
     }
 }
