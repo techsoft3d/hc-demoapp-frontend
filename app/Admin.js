@@ -1,7 +1,7 @@
 var userAccount = "demo@techsoft3d.com";
 var userPassword = "demo";
 var startHUB = "demo";
-var version = "v0.6.2";
+var version = "v0.6.3";
 
 class Admin {
 
