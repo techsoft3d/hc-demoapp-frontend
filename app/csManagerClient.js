@@ -27,7 +27,6 @@ class CsManagerClient {
         });
 
 
-        //        if (!myUserManagmentClient.getUseDirectFetch()) {
 
         let directFetch = myUserManagmentClient.getUseDirectFetch();
         if (directFetch) {
@@ -343,7 +342,7 @@ class CsManagerClient {
 
     async _fetchImage(data) {
         let image;
-        if (myUserManagmentClient.getUseDirectFetch()) {
+        if (true) {
             let json = await myUserManagmentClient.getDownloadToken(data.id, "png");
             if (!json.error) {
                 image = await fetch(json.token);
@@ -408,7 +407,7 @@ class CsManagerClient {
         }
         if (!myUserManagmentClient.getUseStreaming()) {
             let byteArray;
-            if (myUserManagmentClient.getUseDirectFetch()) {
+            if (true) {
                 let json = await myUserManagmentClient.getDownloadToken(modelid, "scs");
                 let res = await fetch(json.token);
                 let ab = await res.arrayBuffer();

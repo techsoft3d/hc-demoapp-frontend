@@ -139,9 +139,8 @@ function msready() {
 
     var op = hwv.operatorManager.getOperator(Communicator.OperatorId.Orbit);
     op.setOrbitFallbackMode(Communicator.OrbitFallbackMode.CameraTarget);
-
     hwv.view.setAmbientOcclusionEnabled(true);
-
+    hwv.view.setAmbientOcclusionRaduis(0.02);
 
     $(window).resize(function () {
       resizeCanvas();
