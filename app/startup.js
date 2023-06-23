@@ -4,6 +4,7 @@ const serveraddress = "https://caas.techsoft3d.com:443";
 
 var myAdmin;
 var myUserManagmentClient;
+var version = "v0.6.4";
 
 
 function switchStreaming() {
@@ -157,6 +158,7 @@ async function initializeViewer() {
   
   hwv = await myUserManagmentClient.initializeWebviewer("content");
   
+  $(".versionstring").html(version + (myAdmin.streamingDisabled ? " (SCS)" : ' (Streaming from ' + myUserManagmentClient.getStreamingServerURL() + ')'));
   let screenConfiguration =
     md.mobile() !== null
       ? Communicator.ScreenConfiguration.Mobile

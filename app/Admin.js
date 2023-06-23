@@ -1,7 +1,6 @@
 var userAccount = "demo@techsoft3d.com";
 var userPassword = "demo";
 var startHUB = "demo";
-var version = "v0.6.3";
 
 class Admin {
 
@@ -40,11 +39,7 @@ class Admin {
     }
    
     async checkLogin() {
-
-        $(".projectname").empty();
-        
-        $(".versionstring").append(version + (this.streamingDisabled ? " (SCS)" : " (Streaming)")+ '</span>');
-
+    
         await myUserManagmentClient.getConfiguration();
 
         myUserManagmentClient.setUseStreaming(!this.streamingDisabled);
