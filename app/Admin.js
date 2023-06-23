@@ -42,10 +42,9 @@ class Admin {
     async checkLogin() {
 
         $(".projectname").empty();
-        $(".projectname").append('HOOPS Web Platform Demo<span class="versionstring">' + version + (this.streamingDisabled ? " (SCS)" : " (Streaming)")+ '</span>');
-        // $(".projectname").empty();
-        // $(".projectname").append("HOOPS Web Platform Demo");
-        // <span id="versionstring" style="color:white;font-size:8px;left:5px;top:-4px;position:relative;"></span>
+        
+        $(".versionstring").append(version + (this.streamingDisabled ? " (SCS)" : " (Streaming)")+ '</span>');
+
         await myUserManagmentClient.getConfiguration();
 
         myUserManagmentClient.setUseStreaming(!this.streamingDisabled);

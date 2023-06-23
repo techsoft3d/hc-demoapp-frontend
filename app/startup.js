@@ -117,7 +117,7 @@ function showAbout() {
   html+='<div style="margin-top:5px;text-align:left;font-size:14px;">';
   html+='<ul><li>View and interrogate the provided sample models or upload your own from any of the more than 25 <a href="https://docs.techsoft3d.com/communicator/latest/overview/supported-formats.html "target="_blank">supported formats.</a> For help with this demo go <span style="cursor: pointer;color:blue;" onclick="showHelp()">here</span>.</a></li>'
   html+='<li style="margin-top:4px">To learn more about developing your own application with the HOOPS Web Platform please see the <a href="https://docs.techsoft3d.com/communicator/latest/" target="_blank">documentation</a>, visit our <a href="https://forum.techsoft3d.com/" target="_blank">forum</a> or jump right into coding with our <a href="https://3dsandbox.techsoft3d.com/" target="_blank">3D Code Sandbox</a>.</li>'
-  html+='<li style="margin-top:4px">To sign up for a trial and download the SDK go <a href="https://manage.techsoft3d.com/" target="_blank">here.</a></li>'
+  html+='<li style="margin-top:4px">To sign up for a free trial and download the SDK go <a href="https://manage.techsoft3d.com/" target="_blank">here.</a></li>'
   html+='<li style="margin-top:6px">To get more technical details on how this demo was built go <span style="cursor: pointer;color:blue;" onclick="showBuilt()">here</span>.</a></li></ul>'
   html+='</div';
   Swal.fire({
