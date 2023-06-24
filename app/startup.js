@@ -158,7 +158,7 @@ async function initializeViewer() {
   
   hwv = await myUserManagmentClient.initializeWebviewer("content");
   
-  $(".versionstring").html(version + (myAdmin.streamingDisabled ? " (SCS)" : ' (Streaming from ' + myUserManagmentClient.getStreamingServerURL() + ')'));
+  $(".versionstring").html(version + (myAdmin.streamingDisabled || !myUserManagmentClient.getUseStreaming() ? " (SCS)" : ' (Streaming from ' + myUserManagmentClient.getStreamingServerURL() + ')'));
   let screenConfiguration =
     md.mobile() !== null
       ? Communicator.ScreenConfiguration.Mobile
