@@ -4,7 +4,7 @@ const serveraddress = "https://caas.techsoft3d.com:443";
 
 var myAdmin;
 var myUserManagmentClient;
-var version = "v0.6.4";
+var version = "v0.6.5";
 
 
 function switchStreaming() {
