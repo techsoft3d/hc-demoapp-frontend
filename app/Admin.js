@@ -40,7 +40,11 @@ class Admin {
    
     async checkLogin() {
     
-        await myUserManagmentClient.getConfiguration();
+        if (!await myUserManagmentClient.getConfiguration()) {
+            myUserManagmentClient.setServerAddress(serveraddressBackup);
+            await myUserManagmentClient.getConfiguration();
+        }
+
 
         myUserManagmentClient.setUseStreaming(!this.streamingDisabled);
 

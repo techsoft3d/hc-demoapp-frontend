@@ -1,6 +1,7 @@
 //const serveraddress = "http://127.0.0.1:3000";
 //const serveraddress = "http://" + window.location.host;
 const serveraddress = "https://caas.techsoft3d.com:443";
+const serveraddressBackup = "https://caas2.techsoft3d.com:443";
 
 var myAdmin;
 var myUserManagmentClient;
