@@ -5,7 +5,7 @@ const serveraddressBackup = "https://caas2.techsoft3d.com:443";
 
 var myAdmin;
 var myUserManagmentClient;
-var version = "v0.6.5";
+var version = "v0.7.0";
 
 
 function switchStreaming() {
