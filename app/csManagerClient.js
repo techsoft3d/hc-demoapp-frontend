@@ -34,7 +34,7 @@ class CsManagerClient {
 
         }
         myDropzone = new Dropzone("div#dropzonearea", {headers: {'CSUM-API-SESSIONID': myUserManagmentClient.getSessionID()},
-            url: directFetch ? "#" : myUserManagmentClient.getUploadURL(), maxFiles: 500, parallelUploads: 3, method: directFetch ? 'put':'post', timeout: 180000, uploadMultiple: false, autoProcessQueue: true,
+            url: directFetch ? "#" : myUserManagmentClient.getUploadURL(), maxFilesize: 180,maxFiles: 500, parallelUploads: 3, method: directFetch ? 'put':'post', timeout: 180000, uploadMultiple: false, autoProcessQueue: true,
             addedfile: function (file) {
 
                 let firstDot = file.name.indexOf(".");
@@ -362,12 +362,14 @@ class CsManagerClient {
     }
 
     async _updateModelList(data) {
-
-
-        let stillPending = false;
+        let _this = this;
         for (var i = 0; i < data.length; i++) {
             if (data[i].pending) {
-                stillPending = true;
+                if(!checkInterval) {
+                    checkInterval = setInterval(async function () {
+                        await _this._checkForNewModels();
+                    }, 2000);
+                }            
             }
 
             let part = null;
@@ -381,6 +383,7 @@ class CsManagerClient {
                     id: data[i].id, name: this._modelHash[data[i].id].name, created: luxon.DateTime.fromISO(this._modelHash[data[i].id].uploaded),
                     image: this._modelHash[data[i].id].image ? this._modelHash[data[i].id].image : "app/images/spinner.gif", size: (this._modelHash[data[i].id].filesize / (1024 * 1024)).toFixed(2)
                 }]);
+                 
             }
             else {
                 if (!this._modelHash[data[i].id].image && part) {
