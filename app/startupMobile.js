@@ -135,7 +135,7 @@ function msready() {
   // $("#content").css("top", "0px");
   setTimeout(function () {
 
-    var newheight = $("#content").height() - 40;
+    var newheight = $("#content").height() - 80;
     $("#content").css({ "height": newheight + "px" });
 
     var op = hwv.operatorManager.getOperator(Communicator.OperatorId.Orbit);
@@ -177,6 +177,15 @@ async function initializeViewer() {
       hwv.view.setBackgroundColor(new Communicator.Color(196,196,196),new Communicator.Color(196,196,196));
     },
     modelStructureReady: msready,
+    firstModelLoaded: () => {
+      setTimeout(function () {
+      let offset = $("#content").offset();
+      let width = $(window).width() - offset.left;
+      let height = $(window).height() - offset.top;
+      $("#toolBar").css("left", (width / 2 - 280) + "px");
+      $("#toolBar").css("bottom", "35px");
+      }, 100);
+        },
   });
 
   hwv.start();

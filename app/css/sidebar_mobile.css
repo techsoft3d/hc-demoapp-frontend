@@ -112,8 +112,7 @@
   
   /* Style page content */
   .main {
-    top:40px;
-    margin-left: 40px; /* Same as the width of the sidebar */  
+    top:80px;
     background: rgb(196,196,196); /* Fallback color */
   }
   

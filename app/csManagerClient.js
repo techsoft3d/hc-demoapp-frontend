@@ -253,27 +253,47 @@ class CsManagerClient {
             },
         ];
 
+        let columns;
+        if (md.mobile()) {
+            columns = [{ title: "ID", field: "id", visible: false, sorter: "number", headerSort: false },
+             { title: "", field: "image", formatter: "image", minWidth: 160, maxWidth: 160, responsive: 0, formatterParams: { width: "155px", height: "145px" } },
+            { title: "Name", field: "name", formatter: "plaintext", vertAlign: "middle" },
+            { title: "Created", field: "created", formatter: "datetime", responsive: 2, vertAlign: "middle",visible:false },
+            {
+                title: "Size", visible:false ,field: "size", formatter: "money", responsive: 2, maxWidth: 80, vertAlign: "middle", formatterParams: {
+                    decimal: ".",
+                    thousand: "",
+                    symbol: "MB",
+                    symbolAfter: true,
+                    precision: false
+                }
+            }
+            ];
+        }
+        else {
+            columns = [{ title: "ID", field: "id", visible: false, sorter: "number", headerSort: false },
+            { title: "", field: "image", formatter: "image", minWidth: 60, maxWidth: 60, responsive: 0, formatterParams: { width: "55px", height: "45px" } },
+            { title: "Name", field: "name", formatter: "plaintext", vertAlign: "middle" },
+            { title: "Created", field: "created", formatter: "datetime", responsive: 2, vertAlign: "middle" },
+            {
+                title: "Size", field: "size", formatter: "money", responsive: 2, maxWidth: 80, vertAlign: "middle", formatterParams: {
+                    decimal: ".",
+                    thousand: "",
+                    symbol: "MB",
+                    symbolAfter: true,
+                    precision: false
+                }
+            }
+            ];
+        }
+
         this.modelTable = new Tabulator("#sidebar_modellist", {
             layout: "fitColumns",
             responsiveLayout: "hide",
             cellVertAlign: "middle",
             selectable: 1,
             rowContextMenu: rowMenu,
-            columns: [
-                { title: "ID", field: "id", visible: false, sorter: "number", headerSort: false },
-                { title: "", field: "image", formatter: "image", minWidth: 60, maxWidth: 60, responsive: 0, formatterParams: { width: "55px", height: "45px" } },
-                { title: "Name", field: "name", formatter: "plaintext", vertAlign: "middle" },
-                { title: "Created", field: "created", formatter: "datetime", responsive: 2, vertAlign: "middle" },
-                {
-                    title: "Size", field: "size", formatter: "money", responsive: 2, maxWidth: 80, vertAlign: "middle", formatterParams: {
-                        decimal: ".",
-                        thousand: "",
-                        symbol: "MB",
-                        symbolAfter: true,
-                        precision: false
-                    }
-                }
-            ],
+            columns: columns,
         });
 
         this.modelTable.on("rowSelected", function (row) {

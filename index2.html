@@ -15,14 +15,14 @@
   <script type="text/javascript" src="js/iscroll.min.js"></script>
   <script type="text/javascript" src="js/mobile-detect.min.js"></script>
 
-  <script type="text/javascript" src="app/startup.js"></script>
+  <script type="text/javascript" src="app/startupMobile.js"></script>
   <script type="text/javascript" src="app/csManagerClient.js"></script>
   <script type="text/javascript" src="app/Admin.js"></script>
   <script type="text/javascript" src="app/AdminHub.js"></script> 
   <script type="text/javascript" src="app/AdminProject.js"></script> 
 
 
-  <script type="text/javascript" src="app/mainUI.js"></script>
+  <script type="text/javascript" src="app/mainUIMobile.js"></script>
 
 
   <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
@@ -79,7 +79,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
   
-  <link rel="stylesheet" href="app/css/sidebar.css" type="text/css" />
+  <link rel="stylesheet" href="app/css/sidebar_mobile.css" type="text/css" />
   <link href='https://unpkg.com/boxicons@2.0.8/css/boxicons.min.css' rel='stylesheet'>
   
 
@@ -92,14 +92,9 @@
     var ui = null;
     var md = new MobileDetect(window.navigator.userAgent);
 
-  window.onload = async function () {
-    if (!md.mobile()) {
-      setupApp();
-    } else {
-      window.location.href = "index2.html";
-      return false;
-    }
-  };
+    window.onload = async function () {
+      setupApp();           
+    };
   </script>
 </head>
 
@@ -362,25 +357,21 @@
 
   <span class = "versionstring"></span>
 
-  <button class = "bcfbutton" id="viewermenu1button" style="right:5px;top:4px; position:absolute;z-index:10000000;"><i style="pointer-events:none" class='bx bx-menu'></i></button>
+  <button class = "bcfbutton" id="viewermenu1button" style="right:20px;top:20px;transform:scale(2.5); position:absolute;z-index:10000000;"><i style="pointer-events:none" class='bx bx-menu'></i></button>
 
-  <a href="https://www.techsoft3d.com" target="_blank"><img style="z-index:10000000;position:absolute;top:-123px;left:-650px;transform:scale(0.13)" src="./hoopswebplatform_logo.png" alt="Tech Soft 3D" data-v-5c2bbdfa=""><span style="position: absolute;left: 180px;top: -12px;z-index: 1000000000000;font-size: 40px;font-weight: 10;color: #7eb2c0;">Demo</span></a>
-  <div class="topbar" style="width:100%;height:42px;background: white;position:absolute;z-index: 1000000;border-bottom-style:solid;border-width:1px;border-color:lightgray">
+  <a href="https://www.techsoft3d.com" target="_blank" style="position: absolute;left: calc(50% - 200px);top: 15px;"><img style="z-index:10000000;position:absolute;top:-123px;left:-650px;transform:scale(0.23)" src="./hoopswebplatform_logo.png" alt="Tech Soft 3D" data-v-5c2bbdfa="">
+    <span style="position: absolute;left: 235px;top: -25px;z-index: 10000000;font-size: 60px;font-weight: 10;color: #7eb2c0;">Demo</span></a>
+  <div class="topbar" style="width:100%;height:80px;background: white;position:absolute;z-index: 1000000;border-bottom-style:solid;border-width:1px;border-color:lightgray">
+    <div id="sidebar_models_button" onclick='mainUI.toggleExpansion("sidebar_models");'><i class='bx bx-file'></i></div>
     <span class="loggedinuser"></span>
     <a href="https://www.techsoft3d.com/products/hoops/web-platform" target="_blank"><span class="projectname"></span></a>    
   </div>
 
-  <div id="sidebar_models" style="overflow:hidden;display:none;overflow-y:auto;top:40px;left:40px;height:calc(100% - 30px);background-color:gainsboro;position:absolute">
+  <div id="sidebar_models" style="overflow:hidden;display:none;overflow-y:auto;top:40px;left:0px;height:calc(100% - 30px);background-color:gainsboro;position:absolute">
     <button onclick='csManagerClient.showUploadWindow()' class="bcfbutton fileUploadButton"><i class="bx bx-upload"></i></button>
     <div id="sidebar_modellist" style="height:calc(100% - 30px);top:30px;overflow: hidden; width:100%;font-size:70%;margin-bottom:10px"></div>
   </div>
   
-
-  
-  <div class="sidenav" style="position:absolute;left:0px;top:12px">
-    <div id="sidebar_models_button" onclick='mainUI.toggleExpansion("sidebar_models");'><i class='bx bx-file'></i></div>
-  </div>
-
 
   <div id="modelchoicepanel"
     style="display:none;user-select:none;background-color:white; position:absolute; right:0px; width:10%; height:100%;background-color:grey">
@@ -394,7 +385,7 @@
 
     <!-- Toolbar HTML-->
     <div id="toolBar">
-      <div class="toolbar-tools">
+      <div class="toolbar-tools" style="line-height:1px">
         <div id="home-button" title="Reset Camera" data-operatorclass="toolbar-home" class="hoops-tool">
           <div class="tool-icon"></div>
         </div>
