@@ -274,7 +274,7 @@ class CsManagerClient {
             columns = [{ title: "ID", field: "id", visible: false, sorter: "number", headerSort: false },
             { title: "", field: "image", formatter: "image", minWidth: 60, maxWidth: 60, responsive: 0, formatterParams: { width: "55px", height: "45px" } },
             { title: "Name", field: "name", formatter: "plaintext", vertAlign: "middle" },
-            { title: "Created",  field: "created", formatter: "datetime", responsive: 2, vertAlign: "middle" ,formatterParams:{
+            { title: "Created",  field: "created", formatter: "datetime", sorter:"date", responsive: 2, vertAlign: "middle" ,formatterParams:{
                 outputFormat:"yyyy-MM-dd HH:ss",
                 invalidPlaceholder:"(invalid date)",
                 timezone:"America/Los_Angeles",
