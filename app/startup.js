@@ -128,9 +128,7 @@ function msready() {
 
   // $("#content").css("top", "0px");
   setTimeout(function () {
-
-    var newheight = $("#content").height() - 40;
-    $("#content").css({ "height": newheight + "px" });
+    
 
     var op = hwv.operatorManager.getOperator(Communicator.OperatorId.Orbit);
     op.setOrbitFallbackMode(Communicator.OrbitFallbackMode.CameraTarget);
@@ -149,6 +147,8 @@ function msready() {
 
 
 async function initializeViewer() {
+  var newheight = $("#content").height() - 40;
+  $("#content").css({ "height": newheight + "px" });
   
   hwv = await myUserManagmentClient.initializeWebviewer("content");
   
