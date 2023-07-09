@@ -332,7 +332,7 @@ class CsManagerClient {
             $("#assemblyuploadbutton").css('display', "none");
             myDropzone.options.autoProcessQueue = true;
             myDropzone.options.uploadMultiple = false;
-            myDropzone.options.parallelUploads = 10;
+            myDropzone.options.parallelUploads = 3;
             myDropzone.options.paramName = "file";
             myDropzone.options.url = myUserManagmentClient.getUploadURL();
         }
