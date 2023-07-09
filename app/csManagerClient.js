@@ -29,11 +29,10 @@ class CsManagerClient {
 
 
         let directFetch = myUserManagmentClient.getUseDirectFetch();
-        directFetch = true;
-        // if (directFetch) {
-        //     $("#uploadAsAssemblycheck").prop("disabled", true);
+        if (directFetch) {
+            $("#uploadAsAssemblycheck").prop("disabled", true);
 
-        // }
+        }
         myDropzone = new Dropzone("div#dropzonearea", {headers: {'CSUM-API-SESSIONID': myUserManagmentClient.getSessionID()},
             url: directFetch ? "#" : myUserManagmentClient.getUploadURL(), maxFilesize: 180,maxFiles: 500, parallelUploads: 3, method: directFetch ? 'put':'post', timeout: 180000, uploadMultiple: false, autoProcessQueue: true,
             addedfile: function (file) {
@@ -70,7 +69,7 @@ class CsManagerClient {
                     }
                 }
                 else {
-                    if (directFetch && !$("#uploadAsAssemblycheck")[0].checked) {
+                    if (directFetch) {
                         let json = await myUserManagmentClient.getUploadToken(file.name, file.size);
     
                         file.itemid = json.itemid;
@@ -82,7 +81,7 @@ class CsManagerClient {
             },
             sending: function (file, xhr) {
 
-                if (directFetch && !$("#uploadAsAssemblycheck")[0].checked) {
+                if (directFetch) {
                     var _send = xhr.send;
                     //            xhr.setRequestHeader('x-amz-acl', 'public-read');
                     xhr.send = function () {
@@ -91,13 +90,13 @@ class CsManagerClient {
                 }
             },
             processing: function (file) {
-                if (directFetch && !$("#uploadAsAssemblycheck")[0].checked) {
+                if (directFetch) {
                     this.options.url = file.signedRequest;
                 }
             }          
         });
         myDropzone.on("success", async function (file, response) {
-            if (directFetch && !$("#uploadAsAssemblycheck")[0].checked) {
+            if (directFetch) {
                 myUserManagmentClient.processUploadFromToken(file.itemid, _this.startPath);
             }
             _this.uploadTable.deleteRow(file.upload.uuid);
@@ -220,7 +219,7 @@ class CsManagerClient {
             $("#dropzonewrapper").css('display', 'block');
             this.startPath = selectedRows[0].getData().name;
             this._zipViewActive = false;
-            if (true) {
+            if (myUserManagmentClient.getUseDirectFetch()) {
                 let json = await myUserManagmentClient.getUploadToken(this._zipFile.name, this._zipFile.size);
                 this._zipFile.itemid = json.itemid;
                 this._zipFile.signedRequest = json.token;
@@ -328,7 +327,6 @@ class CsManagerClient {
             myDropzone.options.parallelUploads = 500;
             myDropzone.options.paramName = paramNameForSend;
             myDropzone.options.url = myUserManagmentClient.getUploadArrayURL();
-            myDropzone.options.method = "post";
         }
         else {
             $("#assemblyuploadbutton").css('display', "none");
@@ -336,7 +334,6 @@ class CsManagerClient {
             myDropzone.options.uploadMultiple = false;
             myDropzone.options.parallelUploads = 3;
             myDropzone.options.paramName = "file";
-            myDropzone.options.method = "put";            
             myDropzone.options.url = myUserManagmentClient.getUploadURL();
         }
 
