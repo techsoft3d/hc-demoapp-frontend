@@ -268,7 +268,7 @@ class CsManagerClient {
             { title: "", field: "image", formatter: "image", minWidth: 60, maxWidth: 60, responsive: 0, formatterParams: { width: "55px", height: "45px" } },
             { title: "Name", field: "name", formatter: "plaintext", vertAlign: "middle" },
             { title: "Created",  field: "created", formatter: "datetime", sorter:"date", responsive: 2, vertAlign: "middle" ,formatterParams:{
-                outputFormat:"yyyy-MM-dd HH:ss",
+                outputFormat:"yyyy-MM-dd HH:mm",
                 invalidPlaceholder:"(invalid date)",
                 timezone:"America/Los_Angeles",
             }},
@@ -403,7 +403,7 @@ class CsManagerClient {
             if (!this._modelHash[data[i].id]) {
                 this._modelHash[data[i].id] = { nodeid: null, name: data[i].name, image: part, filesize: data[i].filesize, uploaded: data[i].uploaded };
                 this.modelTable.addData([{
-                    id: data[i].id, name: this._modelHash[data[i].id].name, created: luxon.DateTime.fromISO(this._modelHash[data[i].id].uploaded),
+                    id: data[i].id, name: this._modelHash[data[i].id].name, created:luxon.DateTime.fromJSDate(new Date(this._modelHash[data[i].id].uploaded)),
                     image: this._modelHash[data[i].id].image ? this._modelHash[data[i].id].image : "app/images/spinner.gif", size: (this._modelHash[data[i].id].filesize / (1024 * 1024)).toFixed(2)
                 }]);
                  
