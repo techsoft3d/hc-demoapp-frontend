@@ -433,15 +433,10 @@ class CsManagerClient {
         }
         if (!myUserManagmentClient.getUseStreaming()) {
             let byteArray;
-            if (true) {
-                let json = await myUserManagmentClient.getDownloadToken(modelid, "scs");
-                let res = await fetch(json.token);
-                let ab = await res.arrayBuffer();
-                byteArray = new Uint8Array(ab);
-            }
-            else {
-                byteArray = await myUserManagmentClient.getSCS(modelid);
-            }
+            let json = await myUserManagmentClient.getDownloadToken(modelid, "scs");
+            let res = await fetch(json.token);
+            let ab = await res.arrayBuffer();
+            byteArray = new Uint8Array(ab);
             await hwv.model.loadSubtreeFromScsBuffer(hwv.model.getRootNode(), byteArray);
         }
         else {
