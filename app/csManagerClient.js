@@ -273,7 +273,7 @@ class CsManagerClient {
                 timezone:"America/Los_Angeles",
             }},
             {
-                title: "Size", field: "size", formatter: "money", responsive: 2, maxWidth: 80, vertAlign: "middle", formatterParams: {
+                title: "Size", field: "size", formatter: "money", responsive: 2, maxWidth: 80, sorter:"number",vertAlign: "middle", formatterParams: {
                     decimal: ".",
                     thousand: "",
                     symbol: "MB",
@@ -285,6 +285,9 @@ class CsManagerClient {
         }
 
         this.modelTable = new Tabulator("#sidebar_modellist", {
+            initialSort:[
+                {column:"created", dir:"asc"}, //sort by this first
+            ],
             layout: "fitColumns",
             responsiveLayout: "hide",
             cellVertAlign: "middle",
@@ -297,6 +300,7 @@ class CsManagerClient {
             let data = row.getData();
             _this.loadModel(data.id);
         });
+     
 
     }
     
