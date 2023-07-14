@@ -1,6 +1,6 @@
 var myAdmin;
 var myUserManagmentClient;
-
+var myCsManagerClient;
 
 function switchStreaming() {
   localStorage.setItem("CSDA-DISABLESTREAMING", myAdmin.getStreamingDisabled() ? false : true);
@@ -8,6 +8,7 @@ function switchStreaming() {
 }
 
 async function setupApp() {
+  myCsManagerClient = new CsManagerClient();
 
  // await fetch(serveraddress + '/test', { method: 'PUT' });        
   myUserManagmentClient = new CaasU.CaasUserManagementClient(serveraddress); 
@@ -41,11 +42,8 @@ async function setupApp() {
 
 async function loadProjectCallback() {
   await initializeViewer();
-  CsManagerClient.msready();
+  myCsManagerClient.initialize();
 }
-
-
-
 
 function showHelp() {
   let html = "";

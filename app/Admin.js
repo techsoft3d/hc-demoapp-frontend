@@ -5,7 +5,7 @@ var startHUB = "demo";
 const serveraddress = "https://caas.techsoft3d.com:443";
 const serveraddressBackup = "https://caas2.techsoft3d.com:443";
 
-var version = "v0.8.5";
+var version = "v0.8.6";
 
 class Admin {
 
@@ -118,7 +118,7 @@ class Admin {
 
         let res = await myUserManagmentClient.register({firstName: $("#register_firstname").val(), lastName: $("#register_lastname").val(), email: $("#register_email").val(), password: $("#register_password").val()});
         if (res == "SUCCESS") {
-            CsManagerClient.msready();
+            myCsManagerClient.initialize();
         }
         else {
             $.notify("Error: " + res, { style:"notifyerror",autoHideDelay: 3000, position: "bottom center" });

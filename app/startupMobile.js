@@ -1,6 +1,6 @@
 var myAdmin;
 var myUserManagmentClient;
-
+var myCsManagerClient;
 
 function switchStreaming() {
   localStorage.setItem("CSDA-DISABLESTREAMING", myAdmin.getStreamingDisabled() ? false : true);
@@ -9,6 +9,7 @@ function switchStreaming() {
 
 async function setupApp() {
 
+  myCsManagerClient = new CsManagerClient();
  // await fetch(serveraddress + '/test', { method: 'PUT' });        
   myUserManagmentClient = new CaasU.CaasUserManagementClient(serveraddress); 
   $.notify.addStyle('notifyerror', {
@@ -41,15 +42,12 @@ async function setupApp() {
 
 async function loadProjectCallback() {
   await initializeViewer();
-  CsManagerClient.msready();
+  myCsManagerClient.initialize();
 }
-
-
-
 
 function showHelp() {
   let html = "";
-  html+='<div style="margin-top:5px;text-align:left;font-size:14px;">';
+  html+='<div style="margin-top:5px;text-align:left;font-size:18px;">';
   html+='Click the <i class="bx bx-file"></i> button to bring up the converted model list. From there you can load models into the webview by clicking on one of the rows. Right-Clicking on a row brings up a menu that allows you to add the model to the existing content of the webviewer (useful for example if you want to load multiple federates BIM models simultaneously) or to delete the model from your account.<br><br>';
   html+='To upload and convert models, click on the <i class="bx bx-upload"></i> button from the model list which will bring up the upload dialog. For single files, simply drag & drop one or more files on the upload area. Those will be immediatly uploaded and converted. ';
   html+='To upload assemblies consisting of more than one file you have two options:<br>';
