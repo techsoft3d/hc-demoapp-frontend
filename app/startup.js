@@ -7,8 +7,23 @@ function switchStreaming() {
   window.location.reload(true); 
 }
 
+
+function uploadErrorCallback(message) {
+  Swal.fire({
+    title: 'Upload Error',
+    text: message,
+    confirmButtonText: 'Dismiss',
+    backdrop: false,
+    width: '50em'
+  })
+}
+
+
 async function setupApp() {
+
   myCsManagerClient = new CsManagerClient();
+  myCsManagerClient.setUploadErrorCallback(uploadErrorCallback);
+
 
  // await fetch(serveraddress + '/test', { method: 'PUT' });        
   myUserManagmentClient = new CaasU.CaasUserManagementClient(serveraddress); 

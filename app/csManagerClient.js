@@ -44,6 +44,10 @@ class CsManagerClient {
         }
     }
 
+    setUploadErrorCallback(cb) {
+        this._uploadErrorCallback = cb;
+    }
+
     async zipFileSelected() {
         let selectedRows = this.zipTable.getSelectedRows();
         if (selectedRows.length == 1) {
@@ -403,7 +407,7 @@ class CsManagerClient {
         let _this = this;
         this._dropZone = new Dropzone("div#dropzonearea", {
             headers: { 'CSUM-API-SESSIONID': myUserManagmentClient.getSessionID() },
-            url: myUserManagmentClient.getUploadURL(), maxFiles: 500, parallelUploads: 10, method: 'post', parallelUploads: 3,timeout: 180000, uploadMultiple: false, autoProcessQueue: true,
+            url: myUserManagmentClient.getUploadURL(), maxFilesize: 160, maxFiles: 500, parallelUploads: 10, method: 'post', parallelUploads: 3,timeout: 180000, uploadMultiple: false, autoProcessQueue: true,
             addedfile: function (file) {
                 let firstDot = file.name.indexOf(".");
                 let extension = "";
@@ -414,6 +418,14 @@ class CsManagerClient {
             },
             uploadprogress: function (file, progress, bytesSent) {
                 _this.uploadTable.updateData([{ id: file.upload.uuid, progress: progress }]);
+            },
+            error(file, message) {
+                console.log(message);
+                _this._dropZone.removeFile(file);
+                _this.uploadTable.deleteRow(file.upload.uuid);
+                if (_this._uploadErrorCallback) {
+                    _this._uploadErrorCallback(message);
+                }
             },
             accept: async function (file, cb) {
      
@@ -469,7 +481,7 @@ class CsManagerClient {
         let _this = this;
         this._dropZone = new Dropzone("div#dropzonearea", {
             headers: { 'CSUM-API-SESSIONID': myUserManagmentClient.getSessionID() },
-            url:  "#", maxFiles: 500, parallelUploads: 10, method: 'put', timeout: 180000, parallelUploads: 3,uploadMultiple: false, autoProcessQueue: true,
+            url:  "#", maxFiles: 500, maxFilesize: 160,parallelUploads: 10, method: 'put', timeout: 180000, parallelUploads: 3,uploadMultiple: false, autoProcessQueue: true,
             addedfile: function (file) {
                 let firstDot = file.name.indexOf(".");
                 let extension = "";
@@ -480,6 +492,14 @@ class CsManagerClient {
             },
             uploadprogress: function (file, progress, bytesSent) {
                 _this.uploadTable.updateData([{ id: file.upload.uuid, progress: progress }]);
+            },
+            error(file, message) {
+                console.log(message);
+                _this._dropZone.removeFile(file);
+                _this.uploadTable.deleteRow(file.upload.uuid);
+                if (_this._uploadErrorCallback) {
+                    _this._uploadErrorCallback(message);
+                }
             },
             accept: async function (file, cb) {
                      
