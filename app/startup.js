@@ -179,9 +179,20 @@ async function initializeViewer() {
 
   ui = new Communicator.Ui.Desktop.DesktopUi(hwv, uiConfig);
 
+
   hwv.setCallbacks({
-    sceneReady: () => {
-      hwv.view.setBackgroundColor(new Communicator.Color(196,196,196),new Communicator.Color(196,196,196));
+    sceneReady: function () {
+      hwv.view.setBackgroundColor(new Communicator.Color(196,196,196),new Communicator.Color(196,196,196));    
+      const canvas = hwv.getViewElement();      
+
+      /**
+       * This line is equivalent to canvas.focus()
+       */
+      hwv.focusInput(true);
+
+      canvas.addEventListener("mouseenter", function () {
+        hwv.focusInput(true);
+      });
     },
     modelStructureReady: msready,
   });
