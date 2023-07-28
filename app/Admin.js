@@ -74,7 +74,7 @@ class Admin {
         let hubid = "";
         for (let i=0;i<hubs.length;i++) {
             if (hubs[i].name == "demo") {
-                hubid = models[i].id;
+                hubid = hubs[i].id;
                 break;
             }
         }
