@@ -49,7 +49,7 @@ async function setupApp() {
   myAdmin.setStreamingDisabled(localStorage.getItem("CSDA-DISABLESTREAMING") == 'true' ? true : false);
 
   myAdmin.setUpdateUICallback(mainUI.updateMenu);
-  myAdmin.adminProject.setLoadProjectCallback(loadProjectCallback);
+  myAdmin.setLoadProjectCallback(loadProjectCallback);
 
   await myAdmin.checkLogin();
   mainUI.setupMenu();
