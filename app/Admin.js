@@ -1,7 +1,7 @@
 const serveraddress = "https://caas.techsoft3d.com:443";
 const serveraddressBackup = "https://caas2.techsoft3d.com:443";
 
-var version = "v0.9.0";
+var version = "v0.9.1";
 
 class Admin {
 
@@ -50,7 +50,7 @@ class Admin {
         myUserManagmentClient.setUseStreaming(!this.streamingDisabled);
 
         let success = await myUserManagmentClient.checkLogin();
-        if (success) {
+        if (success && myUserManagmentClient.getCurrentProject()) {
             let user = myUserManagmentClient.getCurrentUser();
             if (user && this._loggedInCallback) {
                 this._loggedInCallback();
