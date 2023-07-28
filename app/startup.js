@@ -1,6 +1,12 @@
+const version = "v0.9.3";
+const serveraddress = "https://caas.techsoft3d.com:443";
+const serveraddressBackup = "https://caas2.techsoft3d.com:443";
+
+
 var myAdmin;
 var myUserManagmentClient;
 var myCsManagerClient;
+
 
 function switchStreaming() {
   localStorage.setItem("CSDA-DISABLESTREAMING", myAdmin.getStreamingDisabled() ? false : true);
@@ -62,7 +68,13 @@ async function loadProjectCallback() {
 
 function showHelp() {
   let html = "";
-  html+='<div style="margin-top:5px;text-align:left;font-size:14px;">';
+  if (md.mobile()) {
+    html+='<div style="margin-top:5px;text-align:left;font-size:18px;">';
+  }
+  else {
+    html+='<div style="margin-top:5px;text-align:left;font-size:14px;">';
+  }
+
   html+='Click the <i class="bx bx-file"></i> button to bring up the list of available models. From there you can load models into the webview by clicking on one of the rows. Right-Clicking on a row brings up a menu that allows you to add the model to the existing content of the webviewer (useful for example if you want to load multiple federates BIM models simultaneously) or to delete the model from your account.<br><br>';
   html+='To upload and convert models, click on the <i class="bx bx-upload"></i> button from the model list which will bring up the upload dialog. For single files, simply drag & drop one or more files on the upload area. Those will be immediatly uploaded and converted. ';
   html+='To upload assemblies consisting of more than one file you have two options:<br>';
@@ -142,6 +154,10 @@ function msready() {
   // $("#content").css("top", "0px");
   setTimeout(function () {
     
+    if (md.mobile()) {
+        let newheight = $("#content").height() - 80;
+        $("#content").css({ "height": newheight + "px" });
+    }
 
     var op = hwv.operatorManager.getOperator(Communicator.OperatorId.Orbit);
     op.setOrbitFallbackMode(Communicator.OrbitFallbackMode.CameraTarget);
@@ -160,8 +176,10 @@ function msready() {
 
 
 async function initializeViewer() {
-  var newheight = $("#content").height() - 40;
-  $("#content").css({ "height": newheight + "px" });
+  if (!md.mobile()) {
+    let newheight = $("#content").height() - 40;
+    $("#content").css({ "height": newheight + "px" });
+  }
   
   hwv = await myUserManagmentClient.initializeWebviewer("content");
   
@@ -182,19 +200,30 @@ async function initializeViewer() {
 
   hwv.setCallbacks({
     sceneReady: function () {
-      hwv.view.setBackgroundColor(new Communicator.Color(196,196,196),new Communicator.Color(196,196,196));    
-      const canvas = hwv.getViewElement();      
+      hwv.view.setBackgroundColor(new Communicator.Color(196, 196, 196), new Communicator.Color(196, 196, 196));
 
-      /**
-       * This line is equivalent to canvas.focus()
-       */
-      hwv.focusInput(true);
+      if (!md.mobile()) {
+        const canvas = hwv.getViewElement();
 
-      canvas.addEventListener("mouseenter", function () {
         hwv.focusInput(true);
-      });
+
+        canvas.addEventListener("mouseenter", function () {
+          hwv.focusInput(true);
+        });
+      }
     },
     modelStructureReady: msready,
+    firstModelLoaded: () => {
+      if (md.mobile()) {
+        setTimeout(function () {
+          let offset = $("#content").offset();
+          let width = $(window).width() - offset.left;
+          let height = $(window).height() - offset.top;
+          $("#toolBar").css("left", (width / 2 - 280) + "px");
+          $("#toolBar").css("bottom", "35px");
+        }, 100);
+      }
+    },
   });
 
   hwv.start();

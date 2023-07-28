@@ -1,8 +1,3 @@
-const serveraddress = "https://caas.techsoft3d.com:443";
-const serveraddressBackup = "https://caas2.techsoft3d.com:443";
-
-var version = "v0.9.2";
-
 class Admin {
 
     constructor() {    
