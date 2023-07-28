@@ -1,7 +1,14 @@
-const version = "v0.9.3";
-const serveraddress = "https://caas.techsoft3d.com:443";
-const serveraddressBackup = "https://caas2.techsoft3d.com:443";
+const version = "v0.9.4";
 
+let serveraddress;
+let serveraddressBackup;
+if (window.location.href.indexOf("demo.techsoft3d.com") == -1) {
+  serveraddress = window.location.protocol + "//" + window.location.host;
+}
+else {
+  serveraddress = "https://caas.techsoft3d.com:443";
+  serveraddressBackup = "https://caas2.techsoft3d.com:443";
+}
 
 var myAdmin;
 var myUserManagmentClient;
