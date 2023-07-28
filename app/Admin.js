@@ -1,20 +1,14 @@
 const serveraddress = "https://caas.techsoft3d.com:443";
 const serveraddressBackup = "https://caas2.techsoft3d.com:443";
 
-var version = "v0.9.1";
+var version = "v0.9.2";
 
 class Admin {
 
-    constructor() {
-       
+    constructor() {    
         this._updateUICallback = null;
         this._loggedInCallback = null;
-     
-        this.adminHub = new AdminHub();
-        this.adminProject = new AdminProject();
-
         this.streamingDisabled =  false;
-
     }
 
     setStreamingDisabled(disabled) {
@@ -38,6 +32,19 @@ class Admin {
             this._updateUICallback();
         }
     }
+
+    setLoadProjectCallback(loadprojectcallback) {
+        this._loadProjectCallback = loadprojectcallback;
+    }
+
+    async loadProject(projectid) {
+
+        await myUserManagmentClient.loadProject(projectid);
+        this._updateUI();
+        if (this._loadProjectCallback) {
+            this._loadProjectCallback();
+        }
+    }
    
     async checkLogin() {
     
@@ -55,8 +62,10 @@ class Admin {
             if (user && this._loggedInCallback) {
                 this._loggedInCallback();
             }
+
+            
                           
-            this.adminProject.loadProject(myUserManagmentClient.getCurrentProject().id);
+            this.loadProject(myUserManagmentClient.getCurrentProject().id);
             this._updateUI();
             return;
         }
@@ -79,10 +88,6 @@ class Admin {
             }
         }
 
-        if (hubid == "") {
-            this.adminHub.handleHubSelection();
-            return;
-        }
         await myUserManagmentClient.loadHub(hubid);    
         $(".loggedinuser").html("");
 
@@ -90,8 +95,8 @@ class Admin {
         await myUserManagmentClient.loadProject(sessionProject);    
 
         $(".modal-backdrop").remove();
-        if ( this.adminProject._loadProjectCallback) {
-            this.adminProject._loadProjectCallback();
+        if (this._loadProjectCallback) {
+            this._loadProjectCallback();
         }
 
         myAdmin._updateUI();
@@ -103,58 +108,6 @@ class Admin {
         window.location.reload(true); 
 
     }
-
   
-    handleRegistration() {
-        let myModal = new bootstrap.Modal(document.getElementById('registerusermodal'));
-        myModal.toggle();
-    }
-
-    async _submitRegistration() {
-
-        let res = await myUserManagmentClient.register({firstName: $("#register_firstname").val(), lastName: $("#register_lastname").val(), email: $("#register_email").val(), password: $("#register_password").val()});
-        if (res == "SUCCESS") {
-            myCsManagerClient.initialize();
-        }
-        else {
-            $.notify("Error: " + res, { style:"notifyerror",autoHideDelay: 3000, position: "bottom center" });
-            myAdmin.handleRegistration();
-        }   
-    }
-
-    handleLogin() {      
-        let myModal = new bootstrap.Modal(document.getElementById('loginusermodal'));
-        myModal.show();
-
-        var input = document.getElementById("login_password");
-        input.addEventListener("keyup", function(event) {
-            // Number 13 is the "Enter" key on the keyboard
-            if (event.keyCode === 13) {
-              // Cancel the default action, if needed
-              event.preventDefault();
-              // Trigger the button element with a click
-              document.getElementById("loginbutton").click();
-            }
-          });
-    }
-
-    async _submitLogin() {
-        let response = await myUserManagmentClient.login( $("#login_email").val(), $("#login_password").val());
-
-        if (response.ERROR) {
-            myAdmin.handleLogin();
-            $.notify("Error: " + response.ERROR, { style:"notifyerror",autoHideDelay: 3000, position: "bottom center" });
-        }
-        else {
-            $(".loggedinuser").empty();
-            $(".loggedinuser").append(response.user.email);
-            this.adminHub.handleHubSelection();
-            this._updateUI();
-
-            if (myUserManagmentClient.getCurrentUser() && this._loggedInCallback) {
-                this._loggedInCallback();
-            }
-        }
-    }
 }
 
