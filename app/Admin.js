@@ -1,11 +1,7 @@
-var userAccount = "demo@techsoft3d.com";
-var userPassword = "demo";
-var startHUB = "demo";
-
 const serveraddress = "https://caas.techsoft3d.com:443";
 const serveraddressBackup = "https://caas2.techsoft3d.com:443";
 
-var version = "v0.8.9";
+var version = "v0.9.0";
 
 class Admin {
 
@@ -69,15 +65,15 @@ class Admin {
             showAbout();           
         }, 2000);
 
-        let response = await myUserManagmentClient.login( userAccount,userPassword, true);
+        let response = await myUserManagmentClient.login(null,null, true);
         let sessionProject = response.sessionProject;
         $(".loggedinuser").empty();
         $(".loggedinuser").append("");
             
-        let models = await myUserManagmentClient.getHubs();
+        let hubs = await myUserManagmentClient.getHubs();
         let hubid = "";
-        for (let i=0;i<models.length;i++) {
-            if (models[i].name == startHUB) {
+        for (let i=0;i<hubs.length;i++) {
+            if (hubs[i].name == "demo") {
                 hubid = models[i].id;
                 break;
             }
