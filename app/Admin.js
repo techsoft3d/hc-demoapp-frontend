@@ -1,8 +1,3 @@
-const serveraddress = "https://caas.techsoft3d.com:443";
-const serveraddressBackup = "https://caas2.techsoft3d.com:443";
-
-var version = "v0.9.2";
-
 class Admin {
 
     constructor() {    
@@ -79,18 +74,8 @@ class Admin {
         $(".loggedinuser").empty();
         $(".loggedinuser").append("");
             
-        let hubs = await myUserManagmentClient.getHubs();
-        let hubid = "";
-        for (let i=0;i<hubs.length;i++) {
-            if (hubs[i].name == "demo") {
-                hubid = hubs[i].id;
-                break;
-            }
-        }
-
-        await myUserManagmentClient.loadHub(hubid);    
+    
         $(".loggedinuser").html("");
-
       
         await myUserManagmentClient.loadProject(sessionProject);    
 

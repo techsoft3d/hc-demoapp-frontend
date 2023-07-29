@@ -32,21 +32,33 @@ class MainUI {
                 fun: async function () {
                     showAbout();
                 }
-            }                                  
+            }
         ];
-        if (!myUserManagmentClient.getDemoMode())
-        {
-          $('#viewermenu1button').contextMenu("menu", viewermenu, {
-            'displayAround': 'trigger',
-            verAdjust: 30,
-            horAdjust: -35
-          });
+        if (!myUserManagmentClient.getDemoMode()) {
+            if (md.mobile()) {
+                $('#viewermenu1button').contextMenu("menu", viewermenu, {
+                    'displayAround': 'trigger',
+                    verAdjust: 130,
+                    horAdjust: 105
+                });
+            }
+            else {
+                $('#viewermenu1button').contextMenu("menu", viewermenu, {
+                    'displayAround': 'trigger',
+                    verAdjust: 30,
+                    horAdjust: -35
+                });
+            }
         }
-        else
-        {
-          $('#viewermenu1button').css("display", "none");
-          $('.fileUploadButton').css("display", "none");
-        }       
+        else {
+            $('#viewermenu1button').css("display", "none");
+            $('.fileUploadButton').css("display", "none");
+        }
+
+        if (md.mobile()) {
+            $("[id^=iw-contextMenu]").css("transform", "scale(2.5)")
+        }
+
     }
 
     registerSideBars(div, width, callback) {
@@ -59,8 +71,13 @@ class MainUI {
             this.sideBars[i].expanded = false;
             $("#" + i + "_button").css("color", "lightgray");
         }
-        $("#content").css("margin-left", "40px");
-        $("#content").css({ "width": "" });
+        if (md.mobile()) {
+             $("#content").css("display", "block");
+        }
+        else {
+            $("#content").css("margin-left", "40px");
+            $("#content").css({ "width": "" });
+        }
     }
 
     toggleExpansion(div) {
@@ -68,25 +85,40 @@ class MainUI {
         $(".sidenav").children().css("color", "");
         if (!sidebar.expanded) {
             this.collapseAll();
-            $("#content").css("margin-left", "");
-            $("#content").css({ "width": "" });
+            if (md.mobile()) {
 
-            $("#" + div).css({ "display": "block" });
-            $("#" + div).css({ "width": sidebar.width + "px" });
-            var newwidth = $("#content").width() - (sidebar.width + 50);
+                $("#" + div).css({ "display": "block" });
+                $("#" + div).css({ "width": "100%" });
+                var newwidth = $("#content").width() - (sidebar.width + 50);
+                sidebar.expanded = true;
+                $("#" + div + "_button").css("color", "gray");
+                $("#content").css("display", "none");
 
-            $("#content").css("margin-left", (sidebar.width + 40) + "px");
-            $("#content").css({ "width": newwidth + "px" });
-            sidebar.expanded = true;
-            $("#" + div + "_button").css("color", "gray");
+            }
+            else {
+                $("#content").css("margin-left", "");
+                $("#content").css({ "width": "" });
+
+                $("#" + div).css({ "display": "block" });
+                $("#" + div).css({ "width": sidebar.width + "px" });
+                var newwidth = $("#content").width() - (sidebar.width + 50);
+
+                $("#content").css("margin-left", (sidebar.width + 40) + "px");
+                $("#content").css({ "width": newwidth + "px" });
+                sidebar.expanded = true;
+                $("#" + div + "_button").css("color", "gray");
+            }
         }
         else {
             this.collapseAll();
         }
-        if (sidebar.callback)
+        if (sidebar.callback) {
             sidebar.callback(sidebar.expanded);
+        }
 
-        resizeCanvas();
+        if(!md.mobile()) {
+            resizeCanvas();
+        }
     }
 
     updateMenu() {
