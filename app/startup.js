@@ -1,4 +1,4 @@
-const version = "v0.9.5";
+const version = "v0.9.6";
 
 let serveraddress;
 let serveraddressBackup;
@@ -110,9 +110,6 @@ function showHelp() {
 }
 
 
-
-
-
 function showBuilt() {
   let html = "";
   html+='<div style="margin-top:5px;text-align:left;font-size:14px;">';
@@ -120,7 +117,7 @@ function showBuilt() {
   html+='The backend is running on Amazon EC2 and utilizing our <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/servers/stream_cache_server/overview.html" "target="_blank">Stream Cache Server</a> as well as <a href ="https://docs.techsoft3d.com/communicator/latest/prog_guide/data_import/cad_conversion/converter_app/converter-application-overview.html" "target="_blank">Converter</a> for CAD Conversion.';
   html+= ' All uploaded and converted models are stored in Amazon S3.<br><br>'
   html+= 'The backend as well as the front-end have been built with the <a href ="https://forum.techsoft3d.com/t/conversion-and-streaming-backend-for-hoops-communicator/1314" "target="_blank">Communcator as a Service (CaaS)</a> project as well as its <a href ="https://forum.techsoft3d.com/t/user-management-library-for-caas-released/1535" "target="_blank">User Management</a> component.'
-  html+= ' The demo itself will be available on GitHub shortly.<br><br>';
+  html+= ' The source code for this demo is available on GitHub <a href ="https://forum.techsoft3d.com/t/conversion-and-streaming-backend-for-hoops-communicator/1314" "target="_blank">here.</a><br><br>';
   html+= 'If you have any question feel free to get in touch via email (guido@techsoft3d.com) or post in the <a href ="https://forum.techsoft3d.com" "target="_blank">forum</a>.';
   html+='</div';
   Swal.fire({
