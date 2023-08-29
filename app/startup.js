@@ -1,4 +1,4 @@
-const version = "v0.9.6";
+const version = "v0.9.7";
 
 let serveraddress;
 let serveraddressBackup;
@@ -13,6 +13,37 @@ else {
 var myAdmin;
 var myUserManagmentClient;
 var myCsManagerClient;
+
+
+
+function getUrlParameter(sParam) {
+  var sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split('&'),
+      sParameterName,
+      i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+      sParameterName = sURLVariables[i].split('=');
+
+      if (sParameterName[0] === sParam) {
+          if (sParameterName[1] === undefined) {
+              return true;
+          }
+          else {
+              let res = decodeURIComponent(sParameterName[1]);
+              if (res == 'false') {
+                  return false;
+              }
+              else {
+                  return res;
+              }
+          }
+      }
+  }
+  return false;
+}
+
+
 
 
 function switchStreaming() {
@@ -184,8 +215,15 @@ async function initializeViewer() {
     let newheight = $("#content").height() - 40;
     $("#content").css({ "height": newheight + "px" });
   }
+
+
+  let data;
+  if (getUrlParameter("serverurl")) {
+    data = {serverurl: getUrlParameter("serverurl"), sessionid: getUrlParameter("id"), model: getUrlParameter("model"), port: "443"};
+    $(".sidenav").css("display", "none");
+  }
   
-  hwv = await myUserManagmentClient.initializeWebviewer("content");
+  hwv = await myUserManagmentClient.initializeWebviewer("content",data);
   
   $(".versionstring").html(version + (myAdmin.streamingDisabled || !myUserManagmentClient.getUseStreaming() ? " (SCS)" : ' (Streaming from ' + myUserManagmentClient.getStreamingServerURL() + ')'));
   let screenConfiguration =
