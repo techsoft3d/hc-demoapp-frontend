@@ -1,4 +1,4 @@
-const version = "v0.9.7";
+const version = "v0.9.8";
 
 let serveraddress;
 let serveraddressBackup;

@@ -66,7 +66,9 @@ class Admin {
         }
 
         setTimeout(function () {
-            showAbout();           
+            if (!getUrlParameter("serverurl")) {
+                showAbout();           
+            }
         }, 2000);
 
         let response = await myUserManagmentClient.login(null,null, true);
