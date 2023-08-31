@@ -264,6 +264,9 @@ class CsManagerClient {
 
     async _updateModelList(data) {
         let _this = this;
+        for (let i in this._modelHash) {
+            this._modelHash[i].touched = false;
+        }
         for (var i = 0; i < data.length; i++) {
             if (data[i].pending) {
                 if(!_this._checkInterval) {
@@ -292,7 +295,15 @@ class CsManagerClient {
                     this.modelTable.updateData([{ id: data[i].id, image: part }]);
                 }
             }
+            this._modelHash[data[i].id].touched = true;
         }       
+        for (let i in this._modelHash) {
+            if (!this._modelHash[i].touched && !this._modelHash[i].hasError) {
+                this._modelHash[i].hasError = true;
+                this.modelTable.updateData([{ id: i, image: "app/images/error.png" }]);
+            }
+        }
+
     }
 
     async loadModel(modelid, clear = true) {

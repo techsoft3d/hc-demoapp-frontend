@@ -1,8 +1,8 @@
-const version = "v0.9.8";
+const version = "v1.0.0";
 
 let serveraddress;
 let serveraddressBackup;
-if (window.location.href.indexOf("https://demo.techsoft3d.com") == -1) {
+if (false && window.location.href.indexOf("https://demo.techsoft3d.com") == -1) {
   serveraddress = window.location.protocol + "//" + window.location.host;
 }
 else {
