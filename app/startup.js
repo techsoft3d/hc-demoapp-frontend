@@ -2,7 +2,7 @@ const version = "v1.0.1";
 
 let serveraddress;
 let serveraddressBackup;
-if (false && window.location.href.indexOf("https://demo.techsoft3d.com") == -1) {
+if (window.location.href.indexOf("https://demo.techsoft3d.com") == -1) {
   serveraddress = window.location.protocol + "//" + window.location.host;
 }
 else {
