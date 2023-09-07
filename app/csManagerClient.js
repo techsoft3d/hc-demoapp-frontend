@@ -487,6 +487,11 @@ class CsManagerClient {
         });
     }
 
+    displayInvalidFileTypeMessage(file,message) {
+        this._uploadErrorCallback(message);
+        this._dropZone.removeFile(file);
+        this.uploadTable.deleteRow(file.upload.uuid);
+    }
 
     async setupDropzoneForDirectFetch() {
         let _this = this;
@@ -514,6 +519,26 @@ class CsManagerClient {
             },
             accept: async function (file, cb) {
                      
+                if (file.name.endsWith('.skp')) {
+                    _this.displayInvalidFileTypeMessage(file, "Sketchup files cannot be converterted by this demo currenty as the backend is linux based and Sketchup files require a windows system.");                  
+                    return;
+                } 
+
+                if (file.name.endsWith('.scs') || file.name.endsWith('.scz')) {
+                    _this.displayInvalidFileTypeMessage(file, "SCS/SCZ files are currently not accepted for conversion.");                  
+                    return;
+                } 
+
+                if (file.name.endsWith('.xml') || file.name.endsWith('.txt')) {
+                    _this.displayInvalidFileTypeMessage(file, "Text files cannot be converted.");                  
+                    return;
+                } 
+
+                if (file.name.endsWith('.png') || file.name.endsWith('.jpg')) {
+                    _this.displayInvalidFileTypeMessage(file, "Image files cannot be converted.");                  
+                    return;
+                } 
+
                 if(!this._checkInterval) {
                     this._checkInterval = setInterval(async function () {
                         await _this._checkForNewModels();
