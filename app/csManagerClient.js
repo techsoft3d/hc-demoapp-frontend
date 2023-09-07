@@ -520,7 +520,7 @@ class CsManagerClient {
             accept: async function (file, cb) {
                      
                 if (file.name.endsWith('.skp')) {
-                    _this.displayInvalidFileTypeMessage(file, "Sketchup files cannot be converterted by this demo currenty as the backend is linux based and Sketchup files require a windows system.");                  
+                    _this.displayInvalidFileTypeMessage(file, "Sketchup files cannot be converted by this demo currenty as the backend is linux based and Sketchup files require a windows system. To convert your sketchup models please use the HOOPS Communicator windows package directly.");                  
                     return;
                 } 
 
@@ -529,7 +529,7 @@ class CsManagerClient {
                     return;
                 } 
 
-                if (file.name.endsWith('.xml') || file.name.endsWith('.txt')) {
+                if (file.name.endsWith('.xml') || file.name.endsWith('.txt') || file.name.endsWith('.json') && file.name.endsWith('.doc')) {
                     _this.displayInvalidFileTypeMessage(file, "Text files cannot be converted.");                  
                     return;
                 } 
