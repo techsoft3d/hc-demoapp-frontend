@@ -539,6 +539,11 @@ class CsManagerClient {
                     return;
                 } 
 
+                if (file.name.endsWith('.7z')) {
+                    _this.displayInvalidFileTypeMessage(file, "Only regular zip files are supported for assembly upload.");                  
+                    return;
+                } 
+
                 if(!this._checkInterval) {
                     this._checkInterval = setInterval(async function () {
                         await _this._checkForNewModels();
