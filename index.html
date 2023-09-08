@@ -104,7 +104,7 @@
 
 
   <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="max-width:600px">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Upload</h5>
@@ -124,6 +124,8 @@
           <div class="mb-3">
             <button onclick="myCsManagerClient.uploadAsAssemblyStartClicked()" id="assemblyuploadbutton"  style="display:none" type="button" class="btn btn-primary">Upload</button>
           </div>
+          <label class="text-muted small">To upload an assembly consisting of multiple files, either provide a zip file of the assembly OR make sure the "Upload as Assembly" checkbox is checked. In both cases make sure to select the main assembly file before pressing the upload button.</label>
+
         </div>
         <div id="zipcontentdiv" style="display:none">
           <div id="zipcontentdivtable" style="overflow: hidden; width:100%;height:350px; font-size:70%;margin-top:10px;"></div>
