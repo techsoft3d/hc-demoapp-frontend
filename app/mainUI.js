@@ -8,32 +8,38 @@ class MainUI {
     }
     setupMenu() {
 
-        var viewermenu = [          
-            {
+        let viewermenu = [];
+        if (!getUrlParameter("serverurl")) {
+            viewermenu.push({
                 name: localStorage.getItem("CSDA-DISABLESTREAMING") == 'true' ? 'Enable Streaming' : 'Disable Streaming',
                 fun: async function () {
                     switchStreaming();
                 }
-            }, 
-            {
-                name: 'Reset Demo Project',
-                fun: async function () {
-                    myAdmin.handleLogout();
-                }
             },
+                {
+                    name: 'Reset Demo Project',
+                    fun: async function () {
+                        myAdmin.handleLogout();
+                    }
+                }
+            );
+        }
+
+        viewermenu.push(
             {
                 name: 'Help',
                 fun: async function () {
                     showHelp();
                 }
-            },      
+            },
             {
                 name: 'About',
                 fun: async function () {
                     showAbout();
                 }
             }
-        ];
+        );
+        
         if (!myUserManagmentClient.getDemoMode()) {
             if (md.mobile()) {
                 $('#viewermenu1button').contextMenu("menu", viewermenu, {
