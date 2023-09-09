@@ -321,18 +321,16 @@ class CsManagerClient {
         if (this._modelHash[modelid].name.indexOf(".dwg") != -1) {
             hwv.view.setAmbientOcclusionEnabled(false);
         }
+        let json;
         if (!myUserManagmentClient.getUseStreaming()) {
-            let byteArray;
             if (myUserManagmentClient.getUseDirectFetch()) {
-                let json = await myUserManagmentClient.getDownloadToken(modelid, "scs");
-                let res = await fetch(json.token);
-                let ab = await res.arrayBuffer();
-                byteArray = new Uint8Array(ab);
+                json = await myUserManagmentClient.getDownloadToken(modelid, "scs");
+                await hwv.model.loadSubtreeFromScsFile(hwv.model.getRootNode(), json.token);
             }
             else {
-                byteArray = await myUserManagmentClient.getSCS(modelid);
+                let byteArray = await myUserManagmentClient.getSCS(modelid);
+                await hwv.model.loadSubtreeFromScsFile(hwv.model.getRootNode(), byteArray);
             }
-            await hwv.model.loadSubtreeFromScsBuffer(hwv.model.getRootNode(), byteArray);
         }
         else {
             await myUserManagmentClient.enableStreamAccess(modelid);
