@@ -90,7 +90,9 @@ async function setupApp() {
   mainUI.registerSideBars("sidebar_models", 450);
 
   myAdmin = new Admin();
-  myAdmin.setStreamingDisabled(localStorage.getItem("CSDA-DISABLESTREAMING") == 'true' ? true : false);
+  if (!getUrlParameter("serverurl")) {
+    myAdmin.setStreamingDisabled(localStorage.getItem("CSDA-DISABLESTREAMING") == 'true' ? true : false);
+  }
 
   myAdmin.setUpdateUICallback(mainUI.updateMenu);
   myAdmin.setLoadProjectCallback(loadProjectCallback);
