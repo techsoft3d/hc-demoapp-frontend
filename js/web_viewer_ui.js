@@ -3717,8 +3717,9 @@ return __assign.apply(this, arguments)
                                 return [2];
                             case 8:
                                 let pos = $("#content").offset();   //GH2023
-                                this.showElements({ x: a.x - pos.left, y: a.y - pos.top }),
-                                [2]
+                                return this._position = null,
+                                    this.showElements({ x: a.x - pos.left, y: a.y - pos.top }),
+                                    [2]
                         }
                     })
                 })
