@@ -1,4 +1,4 @@
-const version = "v1.0.5";
+const version = "v1.0.6";
 
 let serveraddress;
 let serveraddressBackup;
@@ -227,7 +227,7 @@ async function initializeViewer() {
   
   hwv = await myUserManagmentClient.initializeWebviewer("content",data);
   
-  $(".versionstring").html(version + (myAdmin.streamingDisabled || !myUserManagmentClient.getUseStreaming() ? " (SCS)" : ' (Streaming from ' + myUserManagmentClient.getStreamingServerURL() + ')'));
+  $(".versionstring").html("HC2023 SP2 U1 / App:" +  version +  (myAdmin.streamingDisabled || !myUserManagmentClient.getUseStreaming() ? " (SCS)" : ' (Streaming from ' + myUserManagmentClient.getStreamingServerURL() + ')'));
   let screenConfiguration =
     md.mobile() !== null
       ? Communicator.ScreenConfiguration.Mobile
