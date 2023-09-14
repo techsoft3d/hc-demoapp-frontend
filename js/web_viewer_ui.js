@@ -2111,7 +2111,7 @@ e.PulseManager = m
                     switch (b.label) {
                         case 0:
                             let pos = $("#content").offset();           //GH2023
-                            return 2 !== a.button ? [3, 2] : [4, this.doContext(new e.Point2(a.pageX, a.pageY))];
+                            return 2 !== a.button ? [3, 2] : [4, this.doContext(new e.Point2(a.pageX-pos.left,a.pageY-pos.top))];
                         case 1:
                             return b.sent(), [3, 3];
                         case 2:
@@ -3717,7 +3717,8 @@ return __assign.apply(this, arguments)
                                 return [2];
                             case 8:
                                 let pos = $("#content").offset();   //GH2023
-                                return this._position = null, this.showElements(a), [2]
+                                this.showElements({ x: a.x - pos.left, y: a.y - pos.top }),
+                                [2]
                         }
                     })
                 })
