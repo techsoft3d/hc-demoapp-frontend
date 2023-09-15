@@ -314,10 +314,11 @@ class CsManagerClient {
         else
         {
             if (clear) {
-                await hwv.model.clear();   
-                hwv.view.setPointSize(0.003,Communicator.PointSizeUnit.ProportionOfBoundingDiagonal);
-                hwv.view.setEyeDomeLightingEnabled(true);
+                await hwv.model.clear();                   
             }
+            hwv.view.setPointSize(0.003,Communicator.PointSizeUnit.ProportionOfBoundingDiagonal);
+            hwv.view.setEyeDomeLightingEnabled(true);
+            hwv.view.setPointShape(Communicator.PointShape.Disk)
         }
 
         if (this._modelHash[modelid].name.indexOf(".dwg") != -1) {
