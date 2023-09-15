@@ -314,7 +314,9 @@ class CsManagerClient {
         else
         {
             if (clear) {
-                await hwv.model.clear();           
+                await hwv.model.clear();   
+                hwv.view.setPointSize(0.003,Communicator.PointSizeUnit.ProportionOfBoundingDiagonal);
+                hwv.view.setEyeDomeLightingEnabled(true);
             }
         }
 
