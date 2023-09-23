@@ -137,8 +137,15 @@ class CsManagerClient {
                     let modelid = row.getData().id;
                     await _this.loadModel(modelid, false);
                 }
+            },           
+            {
+                label: "<i class='fas fa-user'></i> Download SCS",
+                action: async function (e, row) {
+                    let modelid = row.getData().id;                    
+                    let byteArray =  await myUserManagmentClient.getSCS(modelid);                    
+                    exportToFile(byteArray, row.getData().name + ".scs");
+                }
             },
-
             {
                 label: "<i class='fas fa-user'></i> Delete",
                 action: async function (e, row) {
