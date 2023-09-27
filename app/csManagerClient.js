@@ -524,12 +524,7 @@ class CsManagerClient {
                     _this.displayInvalidFileTypeMessage(file, "Sketchup files cannot be converted by this demo currenty as the backend is linux based and Sketchup files require a windows system. To convert your sketchup models please use the HOOPS Communicator windows package directly.");                  
                     return;
                 } 
-
-                if (file.name.endsWith('.scs') || file.name.endsWith('.scz')) {
-                    _this.displayInvalidFileTypeMessage(file, "SCS/SCZ files are currently not accepted for conversion.");                  
-                    return;
-                } 
-
+             
                 if (file.name.endsWith('.xml') || file.name.endsWith('.txt') || file.name.endsWith('.json') && file.name.endsWith('.doc')) {
                     _this.displayInvalidFileTypeMessage(file, "Text files cannot be converted.");                  
                     return;
