@@ -1,4 +1,4 @@
-const version = "v1.0.7";
+const version = "v1.0.9";
 
 let serveraddress;
 let serveraddressBackup;
@@ -14,7 +14,26 @@ var myAdmin;
 var myUserManagmentClient;
 var myCsManagerClient;
 
+function exportToFile(data, filename) {
 
+  function _makeBinaryFile(text) {
+      let data = new Blob([text],  {type: "application/octet-stream"});           
+      let file = window.URL.createObjectURL(data);   
+      return file;
+    }
+
+
+  let link = document.createElement('a');
+  link.setAttribute('download', filename);
+  link.href = _makeBinaryFile(data);
+  document.body.appendChild(link);
+
+  window.requestAnimationFrame(function () {
+      let event = new MouseEvent('click');
+      link.dispatchEvent(event);
+      document.body.removeChild(link);
+  });
+}              
 
 function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),
@@ -225,7 +244,9 @@ async function initializeViewer() {
   
   hwv = await myUserManagmentClient.initializeWebviewer("content",data);
   
-  $(".versionstring").html("HC2023 SP2 U1 / App:" +  version +  (myAdmin.streamingDisabled || !myUserManagmentClient.getUseStreaming() ? " / SCS (serverless)" : ' / Streaming from ' + myUserManagmentClient.getStreamingServerURL()));
+  let html = '<span style="width:105px;top:-12px;position:absolute;right:0px">' + version + " / HC2023 SP2 U1</span>";
+  html += (myAdmin.streamingDisabled || !myUserManagmentClient.getUseStreaming() ? "SCS (serverless)        " : 'Streaming from ' + myUserManagmentClient.getStreamingServerURL());
+  $(".versionstring").html(html);
   let screenConfiguration =
     md.mobile() !== null
       ? Communicator.ScreenConfiguration.Mobile
