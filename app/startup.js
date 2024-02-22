@@ -140,7 +140,7 @@ function showHelp() {
   html+='Currently your account is ephemeral, meaning it is tied to your browser and any files you uploaded will only be available to you on the same browser if you reload the page. Any accounts that have not been accessed in 24 hours will be purged, including any uploaded files. You can also manually force a purge by selection "Reset Demo Project" from the top-right menu';
   html+=' in which case your account will be reinitialized with the default models.<br><br>';
   html+='The top-right menu allows you to switch from streaming mode (which utilizes the stream cache server for optimal loading performance) to SCS loading, which is a stateless mode that does not require a backend for streaming.<br><br>';
-  html+= 'If you have any question feel free to get in touch via email (guido@techsoft3d.com) or post in the <a href ="https://forum.techsoft3d.com" "target="_blank">forum</a>. To get more technical details on how this demo was built go <span style="cursor: pointer;color:blue;" onclick="showBuilt()">here</span>.</a>';
+  html+= 'If you have any question feel free to get in touch via email (labs@techsoft3d.com) or post in the <a href ="https://forum.techsoft3d.com" "target="_blank">forum</a>. To get more technical details on how this demo was built go <span style="cursor: pointer;color:blue;" onclick="showBuilt()">here</span>.</a>';
   html+='</div';
   Swal.fire({
 
@@ -168,7 +168,7 @@ function showBuilt() {
   html+= ' All uploaded and converted models are stored in Amazon S3.<br><br>'
   html+= 'The backend as well as the front-end have been built with the <a href ="https://forum.techsoft3d.com/t/conversion-and-streaming-backend-for-hoops-communicator/1314" "target="_blank">Communcator as a Service (CaaS)</a> project as well as its <a href ="https://forum.techsoft3d.com/t/user-management-library-for-caas-released/1535" "target="_blank">User Management</a> component.'
   html+= ' The source code for this demo is available on GitHub <a href ="https://forum.techsoft3d.com/t/conversion-and-streaming-backend-for-hoops-communicator/1314" "target="_blank">here.</a><br><br>';
-  html+= 'If you have any question feel free to get in touch via email (guido@techsoft3d.com) or post in the <a href ="https://forum.techsoft3d.com" "target="_blank">forum</a>.';
+  html+= 'If you have any question feel free to get in touch via email (labs@techsoft3d.com) or post in the <a href ="https://forum.techsoft3d.com" "target="_blank">forum</a>.';
   html+='</div';
   Swal.fire({
 
