@@ -244,7 +244,7 @@ async function initializeViewer() {
   
   hwv = await myUserManagmentClient.initializeWebviewer("content",data);
   
-  let html = '<span style="width:105px;top:-12px;position:absolute;right:0px">' + version + " / HC2023 SP2 U1</span>";
+  let html = '<span style="width:105px;top:-12px;position:absolute;right:0px">' + version + " / HC 2024.4.0</span>";
   html += (myAdmin.streamingDisabled || !myUserManagmentClient.getUseStreaming() ? "SCS (serverless)        " : 'Streaming from ' + myUserManagmentClient.getStreamingServerURL());
   $(".versionstring").html(html);
   let screenConfiguration =
